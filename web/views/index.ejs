@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Microservices</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Microservices</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="#">Express</a>
+      <a class="p-2 text-dark" href="#">Botkit</a>
+      <a class="p-2 text-dark" href="#">MongoDB</a>
+      <a class="p-2 text-dark" href="#">Docker</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">Login</a>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 style="text-align:center">Tickets</h1>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Color</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i = 0; i < tickets.length; i++) { %>
+            <tr>
+              <th scope="row"><%= tickets[i]._id %></th>
+              <td><%= tickets[i].email %></td>
+              <td style="color:<%= tickets[i].color %>"><%= tickets[i].color %></td>
+              <td><%= tickets[i].create_date %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <form method="POST" action="/save_ticket" class="form-inline">
+          <div class="input-group" style="margin-right:15px">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+          </div>
+        
+          <select name="color" class="form-control" style="margin-right:15px">
+              <option selected disabled>Select a color</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="black">Black</option>
+              <option value="purple">Purple</option>
+            </select>
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  </div>
+</body>
+

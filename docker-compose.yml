@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+
+  mongoservice:
+    image: mongo:latest
+    volumes:
+      - ./dbdata:/data/db
+    ports:
+      - "27017:27017"
+
+  gatewayservice:
+    build: ./gateway/
+    depends_on:
+      - "mongoservice"
+    ports:
+      - "3000"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  sparkservice:
+    build: ./spark/
+    ports:
+      - "3001:3001"
+    environment:
+      - NGROK=${NGROK}
+      - SPARK_TOKEN=${SPARK_TOKEN}
+      - URL=${URL}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  webservice:
+    build: ./web/
+    ports:
+      - "80:3002"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
