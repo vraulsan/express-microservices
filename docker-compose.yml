@@ -9,19 +9,6 @@ services:
     ports:
       - "27017:27017"
 
-  gatewayservice:
-    build: ./gateway/
-    depends_on:
-      - "mongoservice"
-    ports:
-      - "3000"
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-
   sparkservice:
     build: ./spark/
     ports:
@@ -41,6 +28,19 @@ services:
     build: ./web/
     ports:
       - "80:3002"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  gatewayservice:
+    build: ./gateway/
+    depends_on:
+      - mongoservice
+    ports:
+      - "3000"
     deploy:
       restart_policy:
         condition: on-failure

@@ -1,6 +1,3 @@
-//* This is our Ticket mongoose schema
-//* For now, lets use mongoose-sequence to implement _id field auto increment by 1
-
 const mongoose = require("mongoose");
 // pass our mongoose instance to the mongoose-sequence instantiation
 const autoIncrement = require('mongoose-sequence')(mongoose);

@@ -1,7 +1,9 @@
 # use latest official node container
-FROM node
+FROM node:apine
 # define our directory varible so that we dont have to re-type it further down
 ARG dir=/usr/src/gatewayservice
+# install bash so we may run the wait-for-it shell script later
+RUN apk add --update bash && rm -rf /var/cache/apk/*
 # create app directory
 RUN mkdir -p ${dir}
 # moving to directory
@@ -12,8 +14,7 @@ COPY package.json package.json
 RUN npm install -y 
 # copy contents of the repo to the app directory
 COPY . ${dir}
-# expose port 3001 because this is the one we used for express
+# expose port 3000
 EXPOSE 3000
 # start the app
-CMD ["node", "server.js"]
-
+CMD ["./wait-for-it.sh", "mongoservice:27017", "--", "node", "server.js"]

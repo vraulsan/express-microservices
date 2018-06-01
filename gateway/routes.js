@@ -1,7 +1,6 @@
 const api = require('./api');
 
 module.exports = (server) => {
-  // ------------------------ WEB INTERFACE ROUTES -------------------------//
   // GET method used to fetch support tickets, returns "n" number of results
   server.get('/tickets', (req,res) => {
     api.getTickets(req.query.n || 10)

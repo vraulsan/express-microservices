@@ -1,5 +1,5 @@
 # use latest official node container
-FROM node
+FROM node:alpine
 # define our directory varible so that we dont have to re-type it further down
 ARG dir=/usr/src/sparkservice
 # create app directory
@@ -12,8 +12,7 @@ COPY package.json package.json
 RUN npm install -y 
 # copy contents of the repo to the app directory
 COPY . ${dir}
-# expose port 3001 because this is the one we used for express
+# expose port 3001
 EXPOSE 3001
 # start the app
 CMD ["node", "app.js"]
-
