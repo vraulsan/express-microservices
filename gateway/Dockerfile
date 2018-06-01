@@ -1,5 +1,5 @@
 # use latest official node container
-FROM node:apine
+FROM node:alpine
 # define our directory varible so that we dont have to re-type it further down
 ARG dir=/usr/src/gatewayservice
 # install bash so we may run the wait-for-it shell script later
