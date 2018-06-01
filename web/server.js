@@ -1,11 +1,14 @@
 const express = require("express");
 const axios = require('axios');
+const bodyParser = require("body-parser-json")
+
 server = express();
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true}));
+server.use(express.static(__dirname + '/public'));
 
 // fire up server
 server.listen(3002, console.log('Web service is now up on port 3002'));
-
-server.use(express.static(__dirname + '/public'));
 
 // set ejs as our templating engine
 server.set('view engine', 'ejs');

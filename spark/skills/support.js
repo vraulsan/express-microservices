@@ -1,11 +1,9 @@
-//* This is the "Support Request" conversation
-//* User will request assistance with one of our Managed Services Teams
-//* The conversation will prompt the user for basic information before team engagement
+//* The conversation will prompt the user for basic information before saving the ticket
 const axios = require('axios');
 
 module.exports = (controller) => {
 
-  controller.hears(["support", "^ticket"], 'direct_message,direct_mention', (bot, message) => {
+  controller.hears(['support', '^ticket'], 'direct_message,direct_mention', (bot, message) => {
 
     let ticket = {};
 
@@ -87,9 +85,9 @@ module.exports = (controller) => {
 }
 
 // define prompt questions
-const firstQuestion = "Do you want me to generate a support ticket for you?\n\nSay **yes** or **no**"
+const firstQuestion = 'Do you want me to generate a support ticket for you?\n\nSay **yes** or **no**'
 
-const secondQuestion = "Excellent, now give me a color.\n\n" +
-"You can say something like **blue** **red** **yellow**."
+const secondQuestion = 'Excellent, now give me a color.\n\n' +
+'You can say something like **blue** **red** **yellow**.'
 
 

@@ -1,11 +1,9 @@
-//* This is the line or queue intent
 //* Displays tickets in the line/queue
 const axios = require('axios');
 
 module.exports = (controller) => {
 
   controller.hears(["queue", "line"], 'direct_message,direct_mention', (bot, message) => {
-    console.log('requested tickets through spark');
     // i will only query for uncompleted tickets
     axios.get('http://gatewayservice:3000/tickets?n=5')
     .then( tickets => {
