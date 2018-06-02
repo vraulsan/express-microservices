@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 // pass our mongoose instance to the mongoose-sequence instantiation
 const autoIncrement = require('mongoose-sequence')(mongoose);
 
-// come back here if we need to change or add fields to the schema
+// our ticket collection schema
 let ticketSchema = new mongoose.Schema({
   color: {
     type: String,
@@ -22,5 +22,5 @@ let ticketSchema = new mongoose.Schema({
 // plug the autoIncrement plugin into the schema
 ticketSchema.plugin(autoIncrement);
 
-// create the mongoose document
+// create the mongoose model
 module.exports = mongoose.model('Ticket', ticketSchema);
